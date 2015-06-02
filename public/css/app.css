@@ -1,5 +1,52 @@
+header#masthead {
+  background-color: #e61875; }
+
+header#masthead .ui.header {
+  color: #fff; }
+
 header#masthead > .grid {
   margin-top: 0;
   margin-bottom: 0; }
+
+.results-list .item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+.results-list .item > .image {
+  -webkit-flex-grow: 20;
+      -ms-flex-positive: 20;
+          flex-grow: 20;
+  -webkit-flex-shrink: 5;
+      -ms-flex-negative: 5;
+          flex-shrink: 5; }
+
+.results-list .item > .content {
+  -webkit-flex-grow: 5;
+      -ms-flex-positive: 5;
+          flex-grow: 5;
+  -webkit-flex-shrink: 20;
+      -ms-flex-negative: 20;
+          flex-shrink: 20; }
+
+.results-list .item > .image img {
+  max-height: 256px; }
+
+.results-list .item .image + .content {
+  padding-left: 1em;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.labels {
+  font-size: 0;
+  margin-top: -5px; }
+
+.labels > .ui.label {
+  margin: 5px 5px 0 0; }
+
+.labels.minimised {
+  max-height: 62px;
+  overflow: hidden; }
 
 /*# sourceMappingURL=app.css.map */

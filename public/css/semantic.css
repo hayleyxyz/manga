@@ -1371,7 +1371,7 @@ body {
   margin: 0px;
   padding: 0px;
   min-width: 320px;
-  background: #f7f7f7;
+  background: #f9f9f9;
   font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.33;
@@ -37302,7 +37302,7 @@ body.pushable {
   z-index: 2;
 }
 body.pushable > .pusher {
-  background: #f7f7f7;
+  background: #f9f9f9;
 }
 .pushable > .pusher {
   background: inherit;
