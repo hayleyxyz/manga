@@ -7,7 +7,7 @@
 
     <title>Madokami</title>
 
-    <link href="{{{ URL::asset('css/semantic.css') }}}" rel="stylesheet">
+    <link href="{{{ URL::asset('vendor/semantic/semantic.css') }}}" rel="stylesheet">
     <link href="{{{ URL::asset('css/app.css') }}}" rel="stylesheet">
 </head>
 <body>
@@ -26,9 +26,14 @@
                     <h2 class="ui header">Search</h2>
                 </div>
                 <div class="ui bottom attached segment">
-                    <p>
-                        Lorem ipsum asd
-                    </p>
+                    <form method="get" action="" class="ui form">
+                        <div class="ui action input">
+                            <input type="text" placeholder="Search...">
+                            <button class="ui icon button">
+                                <i class="search icon"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -67,6 +72,30 @@
                                         <a class="ui red label" href="#">Siblings</a>
                                         <a class="ui red label" href="#">Sister/s</a>
                                     </div>
+
+                                    {{--
+                                    <div class="ui files list">
+                                        <div class="item">
+                                            <div title="Himouto! Umaru-chan - c102 [batoto].zip">
+                                                <i class="upload icon"></i>
+                                                <span class="time">(1m)</span>
+                                                <a href="#">Himouto! Umaru-chan - c102 [batoto].zip</a>
+                                            </div>
+
+                                            <div title="Himouto! Umaru-chan Ch.101v002 Umaru and Lunchtime [KissManga].zip">
+                                                <i class="upload icon"></i>
+                                                <span class="time">(67d)</span>
+                                                <a href="#">Himouto! Umaru-chan Ch.101v002 Umaru and Lunchtime [KissManga].zip</a>
+                                            </div>
+
+                                            <div title="Himouto! Umaru-chan - c101v4 [batoto].zip">
+                                                <i class="upload icon"></i>
+                                                <span class="time">(675d)</span>
+                                                <a href="#">Himouto! Umaru-chan - c101v4 [batoto].zip</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    --}}
                                 </div>
                             </div>
                         </div>
@@ -75,5 +104,7 @@
             </div>
         </div>
     </div>
+
+    <script src="{{{ URL::asset('vendor/semantic/semantic.js') }}}"></script>
 </body>
 </html>
