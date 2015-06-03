@@ -23,7 +23,7 @@
         <div class="row">
             <div class="column">
                 <div class="ui two column doubling results-list grid">
-                    @for($i = 0; $i < 10; $i++)
+                    @foreach($seriesResults as $series)
                         <div class="column">
                             <div class="ui item segment">
                                 <div class="image">
@@ -33,7 +33,7 @@
                                     </a>
                                 </div>
                                 <div class="content">
-                                    <a class="ui header" href="#">Himouto! Umaru-chan [2013]</a>
+                                    <a class="ui header" href="#">{{{ $series->title }}} [2013]</a>
 
                                     <p class="meta">
                                         <a href="#">Sankaku Head</a> / <a href="#">Anonymous</a>
@@ -83,8 +83,10 @@
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
+
+                {!! $seriesResults->render() !!}
             </div>
         </div>
     </div>

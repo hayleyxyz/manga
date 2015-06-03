@@ -15,6 +15,10 @@
             <div class="ui page grid">
                 <div class="column">
                     <h1 class="ui header">Madokami</h1>
+
+                    @if(Auth::check())
+                        <a href="{{{ url('/auth/logout') }}}">Logout</a>
+                    @endif
                 </div>
             </div>
         </header>

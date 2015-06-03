@@ -1,50 +1,30 @@
-@extends('app')
+@extends('layouts.default')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Reset Password</div>
-				<div class="panel-body">
-					@if (session('status'))
-						<div class="alert alert-success">
-							{{ session('status') }}
-						</div>
-					@endif
+    <div class="ui page centered grid" id="login-box">
+        <div class="column">
+            <h3 class="ui top attached header">
+                Reset Password
+            </h3>
 
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+            <div class="ui attached segment">
+                @include('partials.messages')
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <form action="{{ url('/password/email') }}" method="post" class="ui form">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+                    <div class="field">
+                        <label>Email</label>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Send Password Reset Link
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+                        <div class="ui icon input">
+                            <input type="email" name="email" placeholder="Email" required>
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
+
+                    <button class="ui button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

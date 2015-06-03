@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Series;
+
 class HomeController extends Controller {
 
     public function __construct() {
@@ -16,7 +18,10 @@ class HomeController extends Controller {
     }
 
     public function home() {
-        return view('home');
+        $series = Series::paginate(10);
+
+        return view('home')
+            ->with('seriesResults', $series);
     }
 
 }
