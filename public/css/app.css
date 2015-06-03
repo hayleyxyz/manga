@@ -1,6 +1,9 @@
 body {
   background: #f9f9f9; }
 
+[class*="right aligned"] {
+  text-align: right; }
+
 header#masthead {
   background-color: #e61875; }
 
@@ -10,6 +13,10 @@ header#masthead .ui.header {
 header#masthead > .grid {
   margin-top: 0;
   margin-bottom: 0; }
+
+#login-box > .column {
+  max-width: 640px;
+  margin: 0 auto; }
 
 .results-list .item {
   display: -webkit-flex;

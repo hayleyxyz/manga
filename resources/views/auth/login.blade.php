@@ -1,61 +1,63 @@
-@extends('app')
+@extends('layouts.default')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+    <div class="ui page centered grid" id="login-box">
+        <div class="column">
+            <h3 class="ui top attached header">
+                Sign in
+            </h3>
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="ui attached segment">
+                {{-- @include('admin::partials.messages') --}}
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
+                <form method="post" action="{{{ url('/auth/login')  }}}" class="ui form">
+                    <input type="hidden" name="_token" value="{{{ csrf_token()  }}}">
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Remember Me
-									</label>
-								</div>
-							</div>
-						</div>
+                    <div class="field">
+                        <label>Email</label>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
+                        <div class="ui icon input">
+                            <input type="email" name="email" placeholder="Email" required value="{{ old('email') }}">
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
 
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-@endsection
+                    <div class="field">
+                        <label>Password</label>
+
+                        <div class="ui icon input">
+                            <input type="password" name="password" placeholder="Password" required>
+                            <i class="lock icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" name="remember" checked>
+                                <label>Remember Me</label>
+                            </div>
+                        </div>
+
+                        <div class="right aligned field">
+                            <a href="{{{ url('/password/email') }}}">Forgot your password?</a>
+                        </div>
+                    </div>
+
+                    <button class="ui button">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+@stop
