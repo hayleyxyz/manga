@@ -27,13 +27,13 @@
                         <div class="column">
                             <div class="ui item segment">
                                 <div class="image">
-                                    <a href="#">
+                                    <a href="{{ $series->present()->url }}">
                                         <img src="https://manga.madokami.com/images/i212763.png" alt
                                              class="ui image"/>
                                     </a>
                                 </div>
                                 <div class="content">
-                                    <a class="ui header" href="#">{{{ $series->title }}} [2013]</a>
+                                    <a class="ui header" href="{{ $series->present()->url }}">{{ $series->present()->titleWithYear }}</a>
 
                                     <p class="meta">
                                         <a href="#">Sankaku Head</a> / <a href="#">Anonymous</a>

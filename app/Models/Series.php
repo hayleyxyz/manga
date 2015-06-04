@@ -11,13 +11,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laracasts\Presenter\PresentableTrait;
 
 class Series extends Model {
 
     use SoftDeletes;
+    use PresentableTrait;
+
+    protected $presenter = 'App\\Presenters\\SeriesPresenter';
 
     public function facets() {
-        return $this->belongsToMany('Facet')
+        return $this->belongsToMany('App\\Models\\Facet', 'series_facet')
             ->withPivot('type')
             ->withTimestamps();
     }

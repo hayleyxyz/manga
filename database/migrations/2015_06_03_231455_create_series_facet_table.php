@@ -18,6 +18,7 @@ class CreateSeriesFacetTable extends Migration {
             $table->integer('facet_id')->unsigned();
             $table->foreign('facet_id')->references('id')->on('facets');
             $table->enum('type', array('author', 'artist', 'tag', 'genre', 'title'));
+            $table->timestamps();
         });
 	}
 
