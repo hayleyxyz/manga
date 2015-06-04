@@ -9,7 +9,7 @@
 class UserTableSeeder extends \Illuminate\Database\Seeder {
 
     public function run() {
-        \App\User::create([
+        \App\Models\User::create([
             'email' => 'oscar@madokami.com',
             'password' => bcrypt('password'),
         ]);
