@@ -136,6 +136,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'GrahamCampbell\Exceptions\ExceptionsServiceProvider',
 
 		/*
 		 * Application Service Providers...
