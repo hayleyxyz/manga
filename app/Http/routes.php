@@ -1,12 +1,47 @@
 <?php
 
+/*
+ * Route parameter-model bindings
+ */
 Route::model('series', 'App\\Models\\Series');
 
+/*
+ * Index page
+ */
 Route::get('/', 'HomeController@home');
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+/*
+ * Authentication/password reset
+ */
+Route::controllers([ 'auth' => 'Auth\AuthController', 'password' => 'Auth\PasswordController' ]);
 
-Route::get('series/{series}/{slug?}', [ 'as' => 'series.detail', 'uses' => 'SeriesController@detail' ]);
+/*
+ * Routes for a sepecific series
+ */
+Route::group([ 'prefix' => 'series/{series}/{slug}' ], function() {
+
+    /*
+     * Series detail page
+     */
+    Route::get('/', [ 'as' => 'series.detail', 'uses' => 'SeriesController@detail' ]);
+
+    /*
+     * Routes requiring authentication
+     */
+    Route::group([ 'middleware' => 'auth' ], function() {
+
+        /*
+         * Watch/unwatch series
+         */
+        Route::post('watch', [ 'as' => 'series.watch', 'uses' => 'SeriesController@watch' ]);
+        Route::post('unwatch', [ 'as' => 'series.unwatch', 'uses' => 'SeriesController@unwatch' ]);
+
+        /*
+         * Edit series
+         */
+        Route::get('edit', [ 'as' => 'series.edit', 'uses' => 'SeriesController@edit' ]);
+
+    });
+
+});
+

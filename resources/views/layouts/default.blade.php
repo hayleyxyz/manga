@@ -14,7 +14,9 @@
         <header id="masthead" class="ui main menu">
             <div class="ui page grid">
                 <div class="column">
-                    <h1 class="ui header">Madokami</h1>
+                    <h1 class="ui header">
+                        <a href="{{ url('/') }}">Madokami</a>
+                    </h1>
 
                     @if(Auth::check())
                         <a href="{{{ url('/auth/logout') }}}">Logout</a>
@@ -27,6 +29,8 @@
 
         @show
 
+        <script src="{{{ URL::asset('vendor/jquery/jquery-2.1.4.js') }}}"></script>
         <script src="{{{ URL::asset('vendor/semantic/semantic.js') }}}"></script>
+        <script src="{{{ URL::asset('js/app.js') }}}"></script>
     </body>
 </html>

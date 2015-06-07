@@ -4,6 +4,9 @@ body {
 [class*="right aligned"] {
   text-align: right; }
 
+.ui.inline.form {
+  display: inline-block; }
+
 header#masthead {
   background-color: #e61875; }
 

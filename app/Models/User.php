@@ -31,4 +31,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = [ 'password', 'remember_token' ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function series() {
+        return $this->belongsToMany('App\\Models\\Series', 'user_series')
+            ->withTimestamps();
+    }
+
 }

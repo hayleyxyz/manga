@@ -26,4 +26,8 @@ class Series extends Model {
             ->withTimestamps();
     }
 
+    public function releases() {
+        return $this->hasMany('App\\Models\\Release');
+    }
+
 }
