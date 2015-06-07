@@ -56,7 +56,11 @@ class SeriesController extends Controller {
     }
 
     public function edit(Series $series) {
-        $old = Input::old();
+        \App::abort(501, 'Not implemented.');
+    }
+
+    public function editReleases(Series $series) {
+        \App::abort(501, 'Not implemented.');
     }
 
 }

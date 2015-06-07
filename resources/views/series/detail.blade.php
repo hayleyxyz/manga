@@ -84,12 +84,34 @@
                 <table class="ui table">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>File</th>
+                            <th>Size</th>
+                            <th>Uploaded</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach($series->releases as $release)
+                            <tr>
+                                <td>
+                                    <a href="{{ $release->present()->downloadUrl }}">
+                                        {{ $release->name }}
+                                    </a>
+                                </td>
+                                <td>{{ $release->present()->fileSize }}</td>
+                                <td><time title="{{ $release->created_at }}" datetime="{{ $release->created_at }}">{{ $release->present()->uploadedAt }}</time></td>
+                            </tr>
+                        @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3" class="right aligned">
+                                <a href="{{ $series->present()->editReleasesUrl }}" class="ui primary button">
+                                    <i class="edit icon"></i>
+                                    Edit Releases
+                                </a>
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

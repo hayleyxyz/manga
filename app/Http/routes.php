@@ -4,6 +4,7 @@
  * Route parameter-model bindings
  */
 Route::model('series', 'App\\Models\\Series');
+Route::model('release', 'App\\Models\\Release');
 
 /*
  * Index page
@@ -41,7 +42,17 @@ Route::group([ 'prefix' => 'series/{series}/{slug}' ], function() {
          */
         Route::get('edit', [ 'as' => 'series.edit', 'uses' => 'SeriesController@edit' ]);
 
+        /*
+         * Edit releases
+         */
+        Route::get('releases/edit', [ 'as' => 'series.releases.edit', 'uses' => 'SeriesController@editReleases' ]);
+
     });
 
 });
 
+
+/*
+ * Release download
+ */
+Route::get('download/{release}/{file}', [ 'as' => 'release.download', 'uses' => 'SeriesController@downloadRelease' ]);

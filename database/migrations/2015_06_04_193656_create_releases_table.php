@@ -17,6 +17,8 @@ class CreateReleasesTable extends Migration {
             $table->string('name');
             $table->unsignedInteger('size');
             $table->char('hash', 64);
+            $table->integer('series_id')->unsigned();
+            $table->foreign('series_id')->references('id')->on('series');
             $table->timestamps();
             $table->softDeletes();
         });
