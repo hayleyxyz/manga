@@ -51,6 +51,17 @@ Route::group([ 'prefix' => 'series/{series}/{slug}' ], function() {
 
 });
 
+/*
+ * Routes requiring authentication
+ */
+Route::group([ 'middleware' => 'auth' ], function() {
+
+    /*
+     * Save series
+     */
+    Route::post('series/save', [ 'as' => 'series.save', 'uses' => 'SeriesController@save' ]);
+
+});
 
 /*
  * Release download

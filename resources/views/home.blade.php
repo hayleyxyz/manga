@@ -36,50 +36,32 @@
                                     <a class="ui header" href="{{ $series->present()->url }}">{{ $series->present()->titleWithYear }}</a>
 
                                     <p class="meta">
-                                        <a href="#">Sankaku Head</a> / <a href="#">Anonymous</a>
+                                        @foreach($series->present()->groupedStaff as $staff)
+                                            <a href="#">{{ $staff }}</a>
+                                        @endforeach
                                     </p>
 
                                     <div class="labels minimised">
-                                        <a class="ui green label" href="#">Comedy</a>
-                                        <a class="ui green label" href="#">School Life</a>
-                                        <a class="ui green label" href="#">Seinen</a>
-                                        <a class="ui green label" href="#">Slice of Life</a>
+                                        @foreach($series->present()->genres as $genre)
+                                            <a href="#" class="ui green label">{{ $genre }}</a>
+                                        @endforeach
 
-                                        <a class="ui red label" href="#">Brother/s</a>
-                                        <a class="ui red label" href="#">Chibi</a>
-                                        <a class="ui red label" href="#">Childcare</a>
-                                        <a class="ui red label" href="#">Closet Otaku</a>
-                                        <a class="ui red label" href="#">Gag</a>
-                                        <a class="ui red label" href="#">Popular Female Lead</a>
-                                        <a class="ui red label" href="#">Secret Identity</a>
-                                        <a class="ui red label" href="#">Short Chapter/s</a>
-                                        <a class="ui red label" href="#">Siblings</a>
-                                        <a class="ui red label" href="#">Sister/s</a>
+                                            @foreach($series->present()->tags as $tag)
+                                                <a href="#" class="ui red label">{{ $tag }}</a>
+                                            @endforeach
                                     </div>
 
-                                    {{--
                                     <div class="ui files list">
                                         <div class="item">
-                                            <div title="Himouto! Umaru-chan - c102 [batoto].zip">
-                                                <i class="upload icon"></i>
-                                                <span class="time">(1m)</span>
-                                                <a href="#">Himouto! Umaru-chan - c102 [batoto].zip</a>
-                                            </div>
-
-                                            <div title="Himouto! Umaru-chan Ch.101v002 Umaru and Lunchtime [KissManga].zip">
-                                                <i class="upload icon"></i>
-                                                <span class="time">(67d)</span>
-                                                <a href="#">Himouto! Umaru-chan Ch.101v002 Umaru and Lunchtime [KissManga].zip</a>
-                                            </div>
-
-                                            <div title="Himouto! Umaru-chan - c101v4 [batoto].zip">
-                                                <i class="upload icon"></i>
-                                                <span class="time">(675d)</span>
-                                                <a href="#">Himouto! Umaru-chan - c101v4 [batoto].zip</a>
-                                            </div>
+                                            @foreach($series->releases as $release)
+                                                <div title="{{ $release->name }}">
+                                                    <i class="upload icon"></i>
+                                                    <span class="time">(1m)</span>
+                                                    <a href="{{ $release->present()->downloadUrl }}">Himouto! Umaru-chan - c102 [batoto].zip</a>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
-                                    --}}
                                 </div>
                             </div>
                         </div>

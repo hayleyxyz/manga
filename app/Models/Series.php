@@ -20,6 +20,8 @@ class Series extends Model {
 
     protected $presenter = 'App\\Presenters\\SeriesPresenter';
 
+    protected $fillable = [ 'title', 'year' ];
+
     public function facets() {
         return $this->belongsToMany('App\\Models\\Facet', 'series_facet')
             ->withPivot('type')

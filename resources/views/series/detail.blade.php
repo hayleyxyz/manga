@@ -17,7 +17,7 @@
 
                         <div class="labels">
                             @foreach($series->present()->staff as $staff)
-                                <div class="ui blue label">{{ $staff['name'] }} ({{ $staff['type'] }})</div>
+                                <a href="#" class="ui blue label">{{ $staff['name'] }} ({{ $staff['type'] }})</a>
                             @endforeach
                         </div>
 
@@ -33,7 +33,7 @@
 
                         <div class="labels">
                             @foreach($series->present()->genres as $genre)
-                                <div class="ui green label">{{ $genre }}</div>
+                                <a href="#" class="ui green label">{{ $genre }}</a>
                             @endforeach
                         </div>
 
@@ -41,7 +41,7 @@
 
                         <div class="labels">
                             @foreach($series->present()->tags as $tag)
-                                <div class="ui red label">{{ $tag }}</div>
+                                <a href="#" class="ui red label">{{ $tag }}</a>
                             @endforeach
                         </div>
 
@@ -54,7 +54,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button class="ui red button">
                                             <i class="alarm slash outline icon"></i>
-                                            Watch
+                                            Unwatch
                                         </button>
                                     </form>
                                 @else

@@ -90,4 +90,18 @@ class SeriesPresenter extends Presenter {
         return $facets;
     }
 
+    public function groupedStaff() {
+        $facets = [ ];
+
+        foreach($this->facets as $facet) {
+            if(in_array($facet->pivot->type, [ 'author', 'artist' ])) {
+                if(!in_array($facet->name, $facets)) {
+                    $facets[] = $facet->name;
+                }
+            }
+        }
+
+        return $facets;
+    }
+
 }

@@ -56,7 +56,20 @@ class SeriesController extends Controller {
     }
 
     public function edit(Series $series) {
-        \App::abort(501, 'Not implemented.');
+
+        return view('series.edit')
+            ->with('series', $series);
+    }
+
+    public function save() {
+        $input = Input::all();
+        $series = Series::findOrFail($input['id']);
+
+        $series->fill($input['series']);
+        $series->save();
+
+        return redirect($series->present()->editUrl)
+            ->with('success', new MessageBag([ 'Series saved successfully' ]));
     }
 
     public function editReleases(Series $series) {

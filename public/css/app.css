@@ -51,6 +51,13 @@ header#masthead > .grid {
       -ms-flex-positive: 1;
           flex-grow: 1; }
 
+.results-list .item .content .meta a:after {
+  content: ' /';
+  color: rgba(0, 0, 0, 0.8); }
+
+.results-list .item .content .meta a:last-child:after {
+  content: ''; }
+
 .labels {
   font-size: 0;
   margin-top: -5px; }
