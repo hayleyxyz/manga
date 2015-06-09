@@ -10,6 +10,14 @@
             <div class="ui attached segment">
                 @include('partials.messages')
 
+                @if(Session::has('status'))
+                    <div class="ui positive message">
+                        <i class="close icon"></i>
+                        <div class="header">Success</div>
+                        {{ Session::get('status') }}
+                    </div>
+                @endif
+
                 <form action="{{ url('/password/email') }}" method="post" class="ui form">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
