@@ -40,8 +40,7 @@ class Authenticate {
 			}
 			else
 			{
-				return redirect()->guest('auth/login')
-                    ->withErrors('You must be signed in to do that!');
+				return redirect()->guest('auth/login');
 			}
 		}
 
