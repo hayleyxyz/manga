@@ -7,4 +7,9 @@ $(document).ready(function() {
         $(this).closest('.message').fadeOut();
     });
 
+    /*
+     * Semantic UI popups
+     */
+    $('.ui.simple-popup.button').popup();
+
 });

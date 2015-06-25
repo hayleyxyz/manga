@@ -60,7 +60,7 @@
                                 @else
                                     <form method="post" action="{{ $series->present()->watchUrl() }}" class="ui inline form">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button class="ui green button">
+                                        <button class="ui green simple-popup button" title="You will receive notifications for new uploads.">
                                             <i class="alarm outline icon"></i>
                                             Watch
                                         </button>
