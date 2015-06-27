@@ -28,6 +28,11 @@ class Series extends Model {
             ->withTimestamps();
     }
 
+//    public function genres() {
+//        return $this->facets()
+//            ->wherePivot('type', '=', 'genre');
+//    }
+
     public function releases() {
         return $this->hasMany('App\\Models\\Release');
     }

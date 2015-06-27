@@ -10,7 +10,7 @@
         <link href="{{{ URL::asset('vendor/semantic/semantic.css') }}}" rel="stylesheet">
         <link href="{{{ URL::asset('css/app.css') }}}" rel="stylesheet">
     </head>
-    <body>
+    <body ng-app="app">
         <header id="masthead" class="ui main menu">
             <div class="ui page grid">
                 <div class="column">
@@ -31,6 +31,7 @@
 
         <script src="{{{ URL::asset('vendor/jquery/jquery-2.1.4.js') }}}"></script>
         <script src="{{{ URL::asset('vendor/semantic/semantic.js') }}}"></script>
+        <script src="{{{ URL::asset('vendor/angular/angular.js') }}}"></script>
         <script src="{{{ URL::asset('js/app.js') }}}"></script>
     </body>
 </html>

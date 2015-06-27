@@ -29,7 +29,8 @@
                             @endforeach
                         </div>
 
-                        <h3 class="ui header">Genre</h3>
+
+                        <h3 class="ui header">Genres</h3>
 
                         <div class="labels">
                             @foreach($series->present()->genres as $genre)
