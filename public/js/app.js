@@ -28,25 +28,44 @@ $(document).ready(function() {
 
         $scope.facets = [ ];
 
-        $scope.loadFacets = function(data) {
-            data.every(function(row) {
-                // Create array if this is the first of it's type
-                if(!(row.pivot.type in $scope.facets)) {
-                    $scope.facets[row.pivot.type] = [ ];
-                }
-
-                // Add
-                $scope.facets[row.pivot.type].push(row);
-
-                // Continue looping
-                return true;
-            });
+        $scope.newFacet = {
+            title: { pivot: { type: 'title' } }
         };
+
+        $scope.addedFacets = [ ];
+        $scope.removedFacets = [ ]
 
         $scope.removeFacet = function(facet) {
-            console.log(facet);
+            if(facet.id) {
+                for(var i = 0; i < $scope.facets.length; i++) {
+                    if($scope.facets[i].id === facet.id
+                        && $scope.facets[i].pivot.type === facet.pivot.type) {
+                        $scope.facets.splice(i, 1);
+                        $scope.removedFacets.push(facet);
+                        i--;
+                    }
+                }
+            }
+            else {
+                console.log(facet);
+            }
         };
 
+        $scope.addFacet = function(facet) {
+            var addedFacet = angular.copy(facet);
+            $scope.facets.push(addedFacet);
+
+            facet.name = '';
+        };
+
+    });
+
+    module.filter('facetType', function() {
+        return function(items, type) {
+            return items.filter(function(item) {
+                return (item.pivot.type === type);
+            });
+        };
     });
 
 })(angular.module('app', [ ]));

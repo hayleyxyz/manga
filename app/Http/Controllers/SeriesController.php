@@ -61,9 +61,8 @@ class SeriesController extends Controller {
             ->with('series', $series);
     }
 
-    public function save() {
+    public function save(Series $series) {
         $input = Input::all();
-        $series = Series::findOrFail($input['id']);
 
         $series->fill($input['series']);
         $series->save();
@@ -73,7 +72,13 @@ class SeriesController extends Controller {
     }
 
     public function editReleases(Series $series) {
-        \App::abort(501, 'Not implemented.');
+
+        return view('series.releases.edit')
+            ->with('series', $series);
+    }
+
+    public function saveReleases(Series $series) {
+
     }
 
 }

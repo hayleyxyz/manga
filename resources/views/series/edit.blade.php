@@ -11,11 +11,15 @@
                         <img src="https://manga.madokami.com/images/i212763.png" alt class="ui image" />
                     </div>
                     <div class="eleven wide column">
-                        <h1 class="ui header">Edit series: {{ $series->present()->titleWithYear }}</h1>
+                        <h1 class="ui header">
+                            Edit Series
+                            <div class="sub header">{{ $series->present()->titleWithYear }}</div>
+                        </h1>
 
-                        <form method="post" action="{{ route('series.save') }}" class="ui form" ng-init="loadFacets({{ $series->facets->toJson() }})">
+                        <form method="post" action="{{ $series->present()->saveUrl }}" class="ui form" ng-init="facets = {{ $series->facets->toJson() }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="id" value="{{ $series->id }}">
+
+                            <input type="hidden" name="removed_facets[]" ng-value="facet | json" ng-repeat="facet in removedFacets">
 
                             <div class="ui grid">
                                 <div class="twelve wide column">
@@ -35,12 +39,12 @@
                                     <h3 class="ui header">Staff</h3>
 
                                     <div class="labels">
-                                        <div class="ui blue label" ng-repeat="staff in facets.author">
+                                        <div class="ui blue label" ng-repeat="staff in facets | facetType:'author'">
                                             @{{ staff.name }} (Author)
                                             <i class="delete icon" ng-click="removeFacet(staff)"></i>
                                         </div>
 
-                                        <div class="ui blue label" ng-repeat="staff in facets.artist">
+                                        <div class="ui blue label" ng-repeat="staff in facets | facetType:'artist'">
                                             @{{ staff.name }} (Artist)
                                             <i class="delete icon" ng-click="removeFacet(staff)"></i>
                                         </div>
@@ -70,7 +74,7 @@
                                     <h3 class="ui header">Alternative Titles</h3>
 
                                     <div class="labels">
-                                        <div class="ui label" ng-repeat="title in facets.title">
+                                        <div class="ui label" ng-repeat="title in facets | facetType:'title'">
                                             @{{ title.name }}
                                             <i class="delete icon" ng-click="removeFacet(title)"></i>
                                         </div>
@@ -79,8 +83,8 @@
 
                                 <div class="ten wide column">
                                     <div class="ui action input">
-                                        <input type="text" placeholder="Add new title">
-                                        <div class="ui button">Add</div>
+                                        <input type="text" placeholder="Add new title" ng-model="newFacet.title.name">
+                                        <div class="ui button" ng-click="addFacet(newFacet.title)">Add</div>
                                     </div>
                                 </div>
 
@@ -88,7 +92,7 @@
                                     <h3 class="ui header">Genres</h3>
 
                                     <div class="labels">
-                                        <div class="ui green label" ng-repeat="genre in facets.genre">
+                                        <div class="ui green label" ng-repeat="genre in facets | facetType:'genre'">
                                             @{{ genre.name }}
                                             <i class="delete icon" ng-click="removeFacet(genre)"></i>
                                         </div>
@@ -106,7 +110,7 @@
                                     <h3 class="ui header">Tags</h3>
 
                                     <div class="labels">
-                                        <div class="ui red label" ng-repeat="tag in facets.tag">
+                                        <div class="ui red label" ng-repeat="tag in facets | facetType:'tag'">
                                             @{{ tag.name }}
                                             <i class="delete icon" ng-click="removeFacet(tag)"></i>
                                         </div>

@@ -38,8 +38,16 @@ class SeriesPresenter extends Presenter {
         return route('series.edit', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
     }
 
+    public function saveUrl() {
+        return route('series.save', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+    }
+
     public function editReleasesUrl() {
         return route('series.releases.edit', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+    }
+
+    public function saveReleasesUrl() {
+        return route('series.releases.save', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
     }
 
     public function alternativeTitles() {

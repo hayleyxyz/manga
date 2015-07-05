@@ -43,23 +43,21 @@ Route::group([ 'prefix' => 'series/{series}/{slug}' ], function() {
         Route::get('edit', [ 'as' => 'series.edit', 'uses' => 'SeriesController@edit' ]);
 
         /*
+         * Save series
+         */
+        Route::post('save', [ 'as' => 'series.save', 'uses' => 'SeriesController@save' ]);
+
+        /*
          * Edit releases
          */
         Route::get('releases/edit', [ 'as' => 'series.releases.edit', 'uses' => 'SeriesController@editReleases' ]);
 
+        /*
+         * Save releases
+         */
+        Route::post('releases/save', [ 'as' => 'series.releases.save', 'uses' => 'SeriesController@saveReleases' ]);
+
     });
-
-});
-
-/*
- * Routes requiring authentication
- */
-Route::group([ 'middleware' => 'auth' ], function() {
-
-    /*
-     * Save series
-     */
-    Route::post('series/save', [ 'as' => 'series.save', 'uses' => 'SeriesController@save' ]);
 
 });
 
