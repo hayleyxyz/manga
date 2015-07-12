@@ -23,6 +23,7 @@
                                         <th>File</th>
                                         <th>Size</th>
                                         <th>Uploaded</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,6 +38,15 @@
                                             <td>
                                                 <time title="{{ $release->created_at }}"
                                                       datetime="{{ $release->created_at }}">{{ $release->present()->uploadedAt }}</time>
+                                            </td>
+                                            <td>
+                                                <div class="ui red pointing dropdown link button">
+                                                    <div class="text">Actions</div>
+                                                    <i class="dropdown icon"></i>
+                                                    <div class="menu">
+                                                        <div class="item">Delete</div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -63,6 +63,14 @@ class SeriesController extends Controller {
 
     public function save(Series $series) {
         $input = Input::all();
+        $removedFacets = Input::get('removed_facets');
+
+        if($removedFacets && is_array($removedFacets)) {
+            $removedFacets = array_map('json_decode', $removedFacets);
+
+        }
+
+        dd($removedFacets);
 
         $series->fill($input['series']);
         $series->save();
