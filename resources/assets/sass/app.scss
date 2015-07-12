@@ -10,17 +10,17 @@ body {
   display: inline-block;
 }
 
-header#masthead {
-  background-color: rgb(230, 24, 117);
+#header {
+  background: #1b1c1d;
+  margin-bottom: 1rem;
 }
 
-header#masthead .ui.header {
-  color: #fff;
+#header .ui.grid .column {
+  padding-bottom: 0px;
 }
 
-header#masthead > .grid {
-  margin-top: 0;
-  margin-bottom: 0;
+#header .ui.main.menu .item {
+  border-radius: 0px;
 }
 
 #login-box > .column {
@@ -78,4 +78,20 @@ header#masthead > .grid {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.ui.label.ng-enter,
+.ui.label.ng-leave {
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+}
+
+.ui.label.ng-enter,
+.ui.label.ng-leave.ng-leave-active {
+  opacity:0;
+
+}
+.ui.label.ng-leave,
+.ui.label.ng-enter.ng-enter-active {
+  opacity:1;
 }

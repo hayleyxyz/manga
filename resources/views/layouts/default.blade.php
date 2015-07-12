@@ -11,20 +11,28 @@
         <link href="{{{ URL::asset('css/app.css') }}}" rel="stylesheet">
     </head>
     <body ng-app="app">
-        <header id="masthead" class="ui main menu">
+
+        <header id="header">
             <div class="ui page grid">
                 <div class="column">
-                    <h1 class="ui header">
-                        <a href="{{ url('/') }}">Madokami</a>
-                    </h1>
+                    <div class="ui inverted main menu">
+                        <a href="{{ url('/') }}" class="item">Madokami</a>
 
-                    @if(Auth::check())
-                        <a href="{{{ url('/auth/logout') }}}">Logout</a>
-                    @endif
+                        <div class="right menu">
+                            @if(Auth::check())
+                                <div class="ui dropdown link item">
+                                    <span class="count">{{ Auth::user()->email }}</span>
+                                    <div class="menu">
+                                        <a class="item" href="{{ url('/auth/logout') }}">Logout</a>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
-
+        
         @section('content')
 
         @show
