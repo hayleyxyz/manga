@@ -93,8 +93,7 @@
                             </div>
 
                             <div class="ten wide column">
-                                <form class="ui form"
-                                      ng-submit="addFacet(newFacet.title)">
+                                <form class="ui form" ng-submit="addFacet(newFacet.title)">
                                     <div class="ui action input">
                                         <input type="text" placeholder="Add new title" ng-model="newFacet.title.name">
 
@@ -115,11 +114,13 @@
                             </div>
 
                             <div class="ten wide column">
-                                <div class="ui action input">
-                                    <input type="text" placeholder="Add new genre">
+                                <form class="ui form" ng-submit="addFacet(newFacet.genre)">
+                                    <div class="ui action input">
+                                        <input type="text" placeholder="Add new genre" ng-model="newFacet.genre.name">
 
-                                    <div class="ui button">Add</div>
-                                </div>
+                                        <div class="ui button">Add</div>
+                                    </div>
+                                </form>
                             </div>
 
                             <div class="sixteen wide column">

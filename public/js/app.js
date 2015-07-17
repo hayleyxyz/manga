@@ -29,7 +29,8 @@ $(document).ready(function() {
         $scope.facets = [ ];
 
         $scope.newFacet = {
-            title: { pivot: { type: 'title' } }
+            title: { pivot: { type: 'title' } },
+            genre: { pivot: { type: 'genre' } }
         };
 
         $scope.addedFacets = [ ];
@@ -83,8 +84,10 @@ $(document).ready(function() {
 
         $scope.addFacet = function(facet) {
             var addedFacet = angular.copy(facet);
-            $scope.facets.push(addedFacet);
-            $scope.addedFacets.push(addedFacet);
+            if(addedFacet.name.trim().length > 0) {
+                $scope.facets.push(addedFacet);
+                $scope.addedFacets.push(addedFacet);
+            }
 
             facet.name = '';
         };
