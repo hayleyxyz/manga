@@ -41,6 +41,7 @@
         <script src="{{ URL::asset('vendor/semantic/semantic.js') }}"></script>
         <script src="{{ URL::asset('vendor/angular/angular.js') }}"></script>
         <script src="{{ URL::asset('vendor/ng-file-upload/ng-file-upload.js') }}"></script>
+        <script src="{{ URL::asset('vendor/moment/moment.js') }}"></script>
         <script src="{{ URL::asset('js/app.js') }}"></script>
     </body>
 </html>

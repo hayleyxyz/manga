@@ -14,6 +14,7 @@ use App\Services\UserSeriesWatcher;
 use Illuminate\Support\MessageBag;
 use Auth;
 use Input;
+use Symfony\Component\HttpFoundation\Response;
 
 class SeriesController extends Controller {
 
@@ -90,7 +91,11 @@ class SeriesController extends Controller {
     }
 
     public function uploadRelease(Series $series) {
+        $response = [ ];
 
+        $response[] = 'wog';
+
+        return response()->json($response, Response::HTTP_I_AM_A_TEAPOT);
     }
 
 }

@@ -110,11 +110,13 @@ $(document).ready(function() {
      */
     module.controller('ReleasesEdit', function($scope, Upload) {
 
+        $scope.releases = null;
+        $scope.uploading = [ ];
         $scope.uploadUrl = null;
         $scope.seriesId = null;
 
-        $scope.$watch('files', function () {
-            $scope.upload($scope.files);
+        $scope.$watch('uploading', function () {
+            $scope.upload($scope.uploading);
         });
 
         $scope.upload = function (files) {
@@ -136,7 +138,7 @@ $(document).ready(function() {
                     }).success(function (data, status, headers, config) {
                         console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
                     }).error(function (data, status, headers, config) {
-                        console.log('error status: ' + status);
+                        console.log('error status: ' + status, data, headers, config);
                     })
                 }
             }
@@ -154,6 +156,90 @@ $(document).ready(function() {
             var suffixes = [ '', 'K', 'M', 'G', 'T' ];
             var suffix = suffixes[Math.floor(base)];
             return Math.round(Math.pow(1024, base - Math.floor(base))) + suffix;
+        };
+    });
+
+    module.filter('formatTimeSpan', function() {
+        return function(then, now /* = moment() */, useShort /* = false */) {
+            if(!(then instanceof moment.fn.constructor)) {
+                then = moment(then);
+            }
+
+            if(now === undefined || now === null) {
+                now = moment();
+            }
+
+            if(useShort === undefined || useShort === null) {
+                useShort = false;
+            }
+
+            var diff = moment.duration(now.diff(then));
+
+            console.log(diff);
+
+            if(diff.asDays() > 7) {
+                /*
+                 * More then 7 days have elapsed so just return full date
+                 */
+                return then.format('D/M/YYYY');
+            }
+            else {
+                /*
+                 * We'll return 1 of these formatted units, depending on how much time has passed
+                 */
+                var steps = {
+                    'asDays': {
+                        'long': [ '1 day ago', '{val} days ago' ],
+                        'short': '{val}d'
+                    },
+                    'asHours': {
+                        'long': [ '1 hour ago', '{val} hours ago' ],
+                        'short': '{val}h'
+                    },
+                    'asMinutes': {
+                        'long': [ '1 minute ago', '{val} minutes ago' ],
+                        'short': '{val}m'
+                    },
+                    'asSeconds': {
+                        'long': [ '1 second ago', '{val} seconds ago' ],
+                        'short': '{val}s'
+                    }
+                };
+
+                /*
+                 * Start at the largest unit (days) and work down
+                 */
+                for(var step in steps) {
+                    var messages = steps[step];
+
+                    var duration = Math.floor(diff[step]());
+
+                    /*
+                     * If the unit has passed 1 (i.e 1 day) then return that
+                     */
+                    if(duration > 0) {
+                        if (useShort) {
+                            /*
+                             * Short form
+                             */
+                            return messages['short'].replace('{val}', duration);
+                        }
+
+                        if (duration === 1) {
+                            /*
+                             * Long, non-plural
+                             */
+                            return messages['long'][0];
+                        }
+                        else {
+                            /*
+                             * Long, plural
+                             */
+                            return messages['long'][1].replace('{val}', duration);
+                        }
+                    }
+                }
+            }
         };
     });
 

@@ -18,4 +18,12 @@ class Release extends Model {
 
     protected $presenter = 'App\\Presenters\\ReleasePresenter';
 
+    public function toArray() {
+        $result = parent::toArray();
+
+        $result['downloadUrl'] = $this->present()->downloadUrl;
+
+        return $result;
+    }
+
 }

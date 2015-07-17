@@ -1,7 +1,10 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="ui page grid" ng-controller="ReleasesEdit" ng-init="uploadUrl = '{{ $series->present()->uploadReleaseUrl }}'; seriesId = {{ $series->id }};">
+    <div class="ui page grid" ng-controller="ReleasesEdit"
+         ng-init="uploadUrl = {{ json_encode($series->present()->uploadReleaseUrl) }};
+                  seriesId = {{ json_encode($series->id) }};
+                  releases = {{ $series->releases->toJson() }};">
         <div class="column">
             @include('partials.messages')
 
@@ -23,35 +26,52 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($series->releases as $release)
-                                    <tr>
-                                        <td>
-                                            <a href="{{ $release->present()->downloadUrl }}">
-                                                {{ $release->name }}
-                                            </a>
-                                        </td>
-                                        <td>{{ $release->present()->fileSize }}</td>
-                                        <td>
-                                            <time title="{{ $release->created_at }}"
-                                                  datetime="{{ $release->created_at }}">{{ $release->present()->uploadedAt }}</time>
-                                        </td>
-                                        <td>
-                                            <div class="ui red pointing dropdown link button">
+                                <tr ng-repeat="release in releases">
+                                    <td>
+                                        <a ng-href="@{{ release.downloadUrl }}" target="_blank">
+                                            @{{ release.name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @{{ release.size | formatFileSize }}
+                                    </td>
+                                    <td>
+                                        <time title="@{{ release.created_at }}"
+                                              datetime="@{{ release.created_at }}">@{{ release.created_at | formatTimeSpan }}</time>
+                                    </td>
+                                    <td>
+                                        <div class="ui red pointing dropdown link button">
+                                            <div class="text">Actions</div>
+                                            <i class="dropdown icon"></i>
+
+                                            <div class="menu">
+                                                <div class="item" ng-click="deleteRelease(release)">Delete</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="ui teal buttons">
+                                            <div class="ui floating dropdown icon button">
                                                 <div class="text">Actions</div>
                                                 <i class="dropdown icon"></i>
                                                 <div class="menu">
-                                                    <div class="item">Delete</div>
+                                                    <div class="item" data-value="drop">Drop</div>
+                                                    <div class="item" data-value="horizontal flip">Horizontal Flip</div>
+                                                    <div class="item" data-value="fade up">Fade Up</div>
+                                                    <div class="item" data-value="scale">Scale</div>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                <tr ng-repeat="file in files">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="file in uploading">
                                     <td>@{{ file.name }}</td>
                                     <td>@{{ file.size | formatFileSize }}</td>
-                                    <td>
-                                        <div class="ui inverted progress" data-percent="@{{ file.progressPercentage }}" ng-class="{ success: (file.progressPercentage === 100) }">
-                                            <div class="bar" style="transition-duration: 300ms; -webkit-transition-duration: 300ms;" ng-style="{ width: (file.progressPercentage + '%') }">
+                                    <td colspan="2">
+                                        <div class="ui inverted progress" data-percent="@{{ file.progressPercentage }}"
+                                             ng-class="{ success: (file.progressPercentage === 100) }">
+                                            <div class="bar"
+                                                 style="transition-duration: 300ms; -webkit-transition-duration: 300ms;"
+                                                 ng-style="{ width: (file.progressPercentage + '%') }">
                                                 <div class="progress">@{{ file.progressPercentage }}%</div>
                                             </div>
                                         </div>
@@ -61,7 +81,8 @@
                             <tfoot>
                                 <tr>
                                     <th colspan="4" class="right aligned">
-                                        <a href="#" class="ui primary button" ngf-select ng-model="files" ngf-multiple="true">
+                                        <a href="#" class="ui primary button" ngf-select ng-model="uploading"
+                                           ngf-multiple="true">
                                             <i class="upload icon"></i>
                                             Upload
                                         </a>
