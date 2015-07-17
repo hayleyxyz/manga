@@ -23,31 +23,39 @@ class SeriesPresenter extends Presenter {
     }
 
     public function url() {
-        return route('series.detail', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+        return $this->createSeriesUrl('series.detail');
     }
 
     public function watchUrl() {
-        return route('series.watch', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+        return $this->createSeriesUrl('series.watch');
     }
 
     public function unwatchUrl() {
-        return route('series.unwatch', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+        return $this->createSeriesUrl('series.unwatch');
     }
 
     public function editUrl() {
-        return route('series.edit', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+        return $this->createSeriesUrl('series.edit');
     }
 
     public function saveUrl() {
-        return route('series.save', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+        return $this->createSeriesUrl('series.save');
     }
 
     public function editReleasesUrl() {
-        return route('series.releases.edit', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+        return $this->createSeriesUrl('series.releases.edit');
     }
 
     public function saveReleasesUrl() {
-        return route('series.releases.save', [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
+        return $this->createSeriesUrl('series.releases.save');
+    }
+
+    public function uploadReleaseUrl() {
+        return $this->createSeriesUrl('series.releases.upload');
+    }
+
+    protected function createSeriesUrl($routeName) {
+        return route($routeName, [ 'series' => $this->id, 'slug' => str_slug($this->title) ]);
     }
 
     public function alternativeTitles() {

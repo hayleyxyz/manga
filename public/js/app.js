@@ -24,6 +24,9 @@ $(document).ready(function() {
  */
 (function(module) {
 
+    /*
+     * Series edit
+     */
     module.controller('SeriesEdit', function($scope) {
 
         $scope.facets = [ ];
@@ -99,4 +102,56 @@ $(document).ready(function() {
         };
     });
 
-})(angular.module('app', [ ]));
+    /*
+     * Releases edit
+     */
+    module.controller('ReleasesEdit', function($scope, Upload) {
+
+        $scope.uploadUrl = null;
+        $scope.seriesId = null;
+
+        $scope.$watch('files', function () {
+            $scope.upload($scope.files);
+        });
+
+        $scope.upload = function (files) {
+            if (files && files.length) {
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+
+                    file.progressPercentage = 0;
+
+                    Upload.upload({
+                        url: $scope.uploadUrl,
+                        fields: { series: $scope.seriesId },
+                        file: file
+                    }).progress(function (evt) {
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+
+                        evt.config.file.progressPercentage = progressPercentage;
+                    }).success(function (data, status, headers, config) {
+                        console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                    }).error(function (data, status, headers, config) {
+                        console.log('error status: ' + status);
+                    })
+                }
+            }
+        };
+
+    });
+
+    module.filter('formatFileSize', function() {
+        return function(size) {
+            if(size == 0) {
+                return '0';
+            }
+
+            var base = Math.log(size) / Math.log(1024);
+            var suffixes = [ '', 'K', 'M', 'G', 'T' ];
+            var suffix = suffixes[Math.floor(base)];
+            return Math.round(Math.pow(1024, base - Math.floor(base))) + suffix;
+        };
+    });
+
+})(angular.module('app', [ 'ngFileUpload' ]));

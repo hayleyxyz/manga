@@ -57,6 +57,11 @@ Route::group([ 'prefix' => 'series/{series}/{slug}' ], function() {
          */
         Route::post('releases/save', [ 'as' => 'series.releases.save', 'uses' => 'SeriesController@saveReleases' ]);
 
+        /*
+         * Upload release
+         */
+        Route::post('releases/upload', [ 'as' => 'series.releases.upload', 'uses' => 'SeriesController@uploadRelease' ]);
+
     });
 
 });
