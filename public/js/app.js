@@ -175,8 +175,6 @@ $(document).ready(function() {
 
             var diff = moment.duration(now.diff(then));
 
-            console.log(diff);
-
             if(diff.asDays() > 7) {
                 /*
                  * More then 7 days have elapsed so just return full date
