@@ -89,4 +89,8 @@ class SeriesController extends Controller {
 
     }
 
+    public function uploadRelease(Series $series) {
+
+    }
+
 }
