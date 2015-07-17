@@ -3,7 +3,7 @@
         <i class="close icon"></i>
         <div class="header">Error</div>
         @foreach($errors->all() as $error)
-            <p>{{{ $error }}}</p>
+            <p>{{ $error }}</p>
         @endforeach
     </div>
 @endif
@@ -15,7 +15,7 @@
             <i class="close icon"></i>
             <div class="header">Success</div>
             @foreach($success->all() as $message)
-                <p>{{{ $message }}}</p>
+                <p>{{ $message }}</p>
             @endforeach
         </div>
     @endif

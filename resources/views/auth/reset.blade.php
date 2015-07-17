@@ -18,7 +18,7 @@
                         <label>Email</label>
 
                         <div class="ui icon input">
-                            <input type="email" name="email" placeholder="Email" required value="{{{ old('email') }}}">
+                            <input type="email" name="email" placeholder="Email" required value="{{ old('email') }}">
                             <i class="user icon"></i>
                         </div>
                     </div>

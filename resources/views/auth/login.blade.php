@@ -10,8 +10,8 @@
             <div class="ui attached segment">
                 @include('partials.messages')
 
-                <form method="post" action="{{{ url('/auth/login')  }}}" class="ui form">
-                    <input type="hidden" name="_token" value="{{{ csrf_token()  }}}">
+                <form method="post" action="{{ url('/auth/login')  }}" class="ui form">
+                    <input type="hidden" name="_token" value="{{ csrf_token()  }}">
 
                     <div class="field">
                         <label>Email</label>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="right aligned field">
-                            <a href="{{{ url('/password/email') }}}">Forgot your password?</a>
+                            <a href="{{ url('/password/email') }}">Forgot your password?</a>
                         </div>
                     </div>
 
