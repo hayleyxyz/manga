@@ -7,7 +7,7 @@
 
         <title>Madokami</title>
 
-        <link href="{{ URL::asset('vendor/semantic/semantic.css') }}" rel="stylesheet">
+        <link href="{{ URL::asset('vendor/semantic/2.0.4/semantic.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body ng-app="app">
@@ -37,11 +37,11 @@
 
         @show
 
-        <script src="{{ URL::asset('vendor/jquery/jquery-2.1.4.js') }}"></script>
-        <script src="{{ URL::asset('vendor/semantic/semantic.js') }}"></script>
-        <script src="{{ URL::asset('vendor/angular/angular.js') }}"></script>
-        <script src="{{ URL::asset('vendor/ng-file-upload/ng-file-upload.js') }}"></script>
-        <script src="{{ URL::asset('vendor/moment/moment.js') }}"></script>
+        <script src="{{ URL::asset('vendor/jquery/2.1.4/jquery.js') }}"></script>
+        <script src="{{ URL::asset('vendor/semantic/2.0.4/semantic.js') }}"></script>
+        <script src="{{ URL::asset('vendor/angular/1.4.3/angular.js') }}"></script>
+        <script src="{{ URL::asset('vendor/ng-file-upload/5.0.9/ng-file-upload.js') }}"></script>
+        <script src="{{ URL::asset('vendor/moment/2.10.3/moment.js') }}"></script>
         <script src="{{ URL::asset('js/app.js') }}"></script>
     </body>
 </html>
