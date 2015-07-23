@@ -39,26 +39,13 @@
                                         <time title="@{{ release.created_at }}"
                                               datetime="@{{ release.created_at }}">@{{ release.created_at | formatTimeSpan }}</time>
                                     </td>
-                                    <td>
+                                    <td class="right aligned">
                                         <div class="ui red pointing dropdown link button">
                                             <div class="text">Actions</div>
                                             <i class="dropdown icon"></i>
 
                                             <div class="menu">
-                                                <div class="item" ng-click="deleteRelease(release)">Delete</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="ui teal buttons">
-                                            <div class="ui floating dropdown icon button">
-                                                <div class="text">Actions</div>
-                                                <i class="dropdown icon"></i>
-                                                <div class="menu">
-                                                    <div class="item" data-value="drop">Drop</div>
-                                                    <div class="item" data-value="horizontal flip">Horizontal Flip</div>
-                                                    <div class="item" data-value="fade up">Fade Up</div>
-                                                    <div class="item" data-value="scale">Scale</div>
-                                                </div>
+                                                <div class="item">Delete</div>
                                             </div>
                                         </div>
                                     </td>

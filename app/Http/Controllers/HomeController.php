@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Filesystem\Storage;
 use App\Models\Series;
 use App\Services\Search\SeriesSearch;
 use Foolz\SphinxQL\Connection;
@@ -26,6 +27,7 @@ class HomeController extends Controller {
     }
 
     public function home() {
+
         $series = Series::paginate(10);
         
         return view('home')
