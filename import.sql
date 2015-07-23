@@ -10,8 +10,8 @@ insert into manga.facets (id, name, created_at, updated_at) (
 	select id, name, created_at, updated_at from mangaindex.facets
 );
 
-insert into manga.series_facet (series_id, facet_id, type) (
-	select series_id, facet_id, if(type = 'category', 'tag', type) from mangaindex.facet_series
+insert into manga.series_facet (series_id, facet_id, type, created_at, updated_at) (
+	select series_id, facet_id, if(type = 'category', 'tag', type), now(), now() from mangaindex.facet_series
 );
 
 select series.*, group_concat(facets.name) as facets from manga.series
