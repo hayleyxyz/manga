@@ -91,9 +91,9 @@ class SeriesController extends Controller {
     }
 
     public function uploadRelease(Series $series) {
-        $response = [ ];
 
-        $response[] = 'wog';
+
+        $response = [ ];
 
         return response()->json($response, Response::HTTP_I_AM_A_TEAPOT);
     }

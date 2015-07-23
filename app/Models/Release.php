@@ -26,4 +26,12 @@ class Release extends Model {
         return $result;
     }
 
+    public static function getAllowedTypes() {
+        return [
+            'zip', 'rar', 'cbz', '7z', 'txt', 'jpg', 'png',
+            'bmp', 'cbr', 'md5', 'pdf', 'epub', 'jpeg', 'docx',
+            'doc', 'odf', 'mobi'
+        ];
+    }
+
 }

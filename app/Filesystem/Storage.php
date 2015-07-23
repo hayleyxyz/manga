@@ -20,6 +20,7 @@ class Storage {
     public static function pathForRelease(Release $release) {
         $root = self::rootPath();
 
+        $path = $root.'/'.self::staggerId($release->series_id);
     }
 
     protected static function padId($id) {
