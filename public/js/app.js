@@ -113,7 +113,6 @@ $(document).ready(function() {
         $scope.releases = null;
         $scope.uploading = [ ];
         $scope.uploadUrl = null;
-        $scope.seriesId = null;
 
         $scope.$watch('uploading', function () {
             $scope.upload($scope.uploading);
@@ -128,7 +127,7 @@ $(document).ready(function() {
 
                     Upload.upload({
                         url: $scope.uploadUrl,
-                        fields: { series: $scope.seriesId },
+                        fields: { },
                         file: file
                     }).progress(function (evt) {
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);

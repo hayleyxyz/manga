@@ -3,7 +3,6 @@
 @section('content')
     <div class="ui page grid" ng-controller="ReleasesEdit"
          ng-init="uploadUrl = {{ json_encode($series->present()->uploadReleaseUrl) }};
-                  seriesId = {{ json_encode($series->id) }};
                   releases = {{ $series->releases->toJson() }};">
         <div class="column">
             @include('partials.messages')

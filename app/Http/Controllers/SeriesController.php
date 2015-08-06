@@ -10,7 +10,9 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Series;
+use App\Services\ReleaseUploader;
 use App\Services\UserSeriesWatcher;
+use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use Auth;
 use Input;
@@ -18,10 +20,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SeriesController extends Controller {
 
+    /** @var UserSeriesWatcher $userSeriesWatcher */
     protected $userSeriesWatcher;
 
-    public function __construct(UserSeriesWatcher $userSeriesWatcher) {
+    /** @var ReleaseUploader $releaseUploader */
+    protected $releaseUploader;
+
+    public function __construct(UserSeriesWatcher $userSeriesWatcher, ReleaseUploader $releaseUploader) {
         $this->userSeriesWatcher = $userSeriesWatcher;
+        $this->releaseUploader = $releaseUploader;
     }
 
     public function detail(Series $series) {
@@ -90,8 +97,13 @@ class SeriesController extends Controller {
 
     }
 
-    public function uploadRelease(Series $series) {
+    public function uploadRelease(Request $request, Series $series) {
+        if($request->hasFile('file')) {
+            $file = $request->file('file');
+            $result = $this->releaseUploader->upload($file);
 
+            dd($result);
+        }
 
         $response = [ ];
 
