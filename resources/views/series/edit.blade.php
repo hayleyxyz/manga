@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="ui page grid" ng-controller="SeriesEdit">
+    <div class="ui page grid" ng-controller="SeriesEdit" ng-init="facetsAutocompleteUrl = {{ json_encode(route('facets.autocomplete')) }};">
         <div class="column">
             @include('partials.messages')
 
@@ -104,6 +104,10 @@
 
                             <div class="sixteen wide column">
                                 <h3 class="ui header">Genres</h3>
+
+                                <tags-input ng-model="facets.genre">
+                                    <auto-complete source="loadFacets('genre', $query)" min-length="1"></auto-complete>
+                                </tags-input>
 
                                 <div class="labels">
                                     <div class="ui green label" ng-repeat="genre in facets | facetType:'genre'">

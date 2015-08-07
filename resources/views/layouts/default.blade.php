@@ -42,6 +42,7 @@
         <script src="{{ URL::asset('vendor/angular/1.4.3/angular.js') }}"></script>
         <script src="{{ URL::asset('vendor/ng-file-upload/5.0.9/ng-file-upload.js') }}"></script>
         <script src="{{ URL::asset('vendor/moment/2.10.3/moment.js') }}"></script>
+        <script src="{{ URL::asset('vendor/ng-tags-input/3.0.0/ng-tags-input.js') }}"></script>
         <script src="{{ URL::asset('js/app.js') }}"></script>
     </body>
 </html>

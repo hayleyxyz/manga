@@ -20,4 +20,19 @@ class Facet extends Model {
 
     protected $presenter = 'App\\Presenters\\FacetPresenter';
 
+    public function scopeType($query, $type) {
+        $query
+            ->join('series_facet', 'series_facet.facet_id', '=', 'facets.id')
+            ->where('series_facet.type', '=', $type)
+            ->groupBy('facets.id');
+
+        return $query;
+    }
+
+    public function scopeSearch($query, $search) {
+        $query->where('facets.name', 'LIKE', '%'.$search.'%');
+
+        return $query;
+    }
+
 }

@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Facet;
 use App\Models\Series;
 use App\Services\ReleaseUploader;
 use App\Services\UserSeriesWatcher;
@@ -108,6 +109,15 @@ class SeriesController extends Controller {
         $response = [ ];
 
         return response()->json($response, Response::HTTP_I_AM_A_TEAPOT);
+    }
+
+    public function facetsAutocomplete(Request $request) {
+        $query = $request->get('query');
+        $type = $request->get('type');
+
+        $results = Facet::type($type)->search($query)->lists('facets.name');
+
+        return response()->json($results);
     }
 
 }

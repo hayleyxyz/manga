@@ -27,8 +27,15 @@ $(document).ready(function() {
     /*
      * Series edit
      */
-    module.controller('SeriesEdit', function($scope) {
+    module.controller('SeriesEdit', function($scope, $http) {
 
+        $scope.facets = { genre: [ ] };
+
+        $scope.loadFacets = function(type, query) {
+            return $http.get('/facets/autocomplete', { params: { type: type, query: query } });
+        };
+
+        /*
         $scope.facets = [ ];
 
         $scope.newFacet = {
@@ -94,6 +101,7 @@ $(document).ready(function() {
 
             facet.name = '';
         };
+        */
 
     });
 
@@ -240,4 +248,4 @@ $(document).ready(function() {
         };
     });
 
-})(angular.module('app', [ 'ngFileUpload' ]));
+})(angular.module('app', [ 'ngFileUpload', 'ngTagsInput' ]));

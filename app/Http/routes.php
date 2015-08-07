@@ -3,8 +3,8 @@
 /*
  * Route parameter-model bindings
  */
-Route::model('series', 'App\\Models\\Series');
-Route::model('release', 'App\\Models\\Release');
+Route::model('series', \App\Models\Series::class);
+Route::model('release', \App\Models\Release::class);
 
 /*
  * Index page
@@ -17,53 +17,52 @@ Route::get('/', 'HomeController@home');
 Route::controllers([ 'auth' => 'Auth\AuthController', 'password' => 'Auth\PasswordController' ]);
 
 /*
- * Routes for a sepecific series
+ * Routes for a specific series
  */
-Route::group([ 'prefix' => 'series/{series}/{slug}' ], function() {
+Route::group([ 'prefix' => 'series/{series}/{slug}', 'as' => 'series.' ], function() {
 
-    /*
-     * Series detail page
-     */
-    Route::get('/', [ 'as' => 'series.detail', 'uses' => 'SeriesController@detail' ]);
+    // Series detail
+    Route::get('/', [ 'as' => 'detail', 'uses' => 'SeriesController@detail' ]);
 
     /*
      * Routes requiring authentication
      */
     Route::group([ 'middleware' => 'auth' ], function() {
 
-        /*
-         * Watch/unwatch series
-         */
-        Route::post('watch', [ 'as' => 'series.watch', 'uses' => 'SeriesController@watch' ]);
-        Route::post('unwatch', [ 'as' => 'series.unwatch', 'uses' => 'SeriesController@unwatch' ]);
+        // Watch / unwatch
+        Route::post('watch', [ 'as' => 'watch', 'uses' => 'SeriesController@watch' ]);
+        Route::post('unwatch', [ 'as' => 'unwatch', 'uses' => 'SeriesController@unwatch' ]);
+
+        // Edit series
+        Route::get('edit', [ 'as' => 'edit', 'uses' => 'SeriesController@edit' ]);
+
+        // Save series
+        Route::post('save', [ 'as' => 'save', 'uses' => 'SeriesController@save' ]);
 
         /*
-         * Edit series
+         * Releases
          */
-        Route::get('edit', [ 'as' => 'series.edit', 'uses' => 'SeriesController@edit' ]);
+        Route::group([ 'prefix' => 'releases', 'as' => 'releases.' ], function() {
 
-        /*
-         * Save series
-         */
-        Route::post('save', [ 'as' => 'series.save', 'uses' => 'SeriesController@save' ]);
+            // Edit
+            Route::get('edit', [ 'as' => 'edit', 'uses' => 'SeriesController@editReleases' ]);
 
-        /*
-         * Edit releases
-         */
-        Route::get('releases/edit', [ 'as' => 'series.releases.edit', 'uses' => 'SeriesController@editReleases' ]);
+            // Save
+            Route::post('save', [ 'as' => 'save', 'uses' => 'SeriesController@saveReleases' ]);
 
-        /*
-         * Save releases
-         */
-        Route::post('releases/save', [ 'as' => 'series.releases.save', 'uses' => 'SeriesController@saveReleases' ]);
-
-        /*
-         * Upload release
-         */
-        Route::post('releases/upload', [ 'as' => 'series.releases.upload', 'uses' => 'SeriesController@uploadRelease' ]);
-
+            // Upload
+            Route::post('/pload', [ 'as' => 'upload', 'uses' => 'SeriesController@uploadRelease' ]);
+        });
     });
+});
 
+/*
+ * Facets
+ */
+Route::group([ 'prefix' => 'facets', 'as' => 'facets.' ], function() {
+
+    // Autocomplete
+    Route::get('autocomplete', [ 'as' => 'autocomplete', 'uses' => 'SeriesController@facetsAutocomplete' ]);
 });
 
 /*
